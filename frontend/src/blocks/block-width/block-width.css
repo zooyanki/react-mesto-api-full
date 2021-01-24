@@ -1,0 +1,22 @@
+.block-width {
+    width: calc(100% - 300px);
+}
+
+
+@media screen and (min-width: 300px) and (max-width: 767px) {
+    .block-width {
+        width: 100%;
+       }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+    .block-width {
+        width: calc(100% - 100px);
+       }
+}
+
+@media screen and (min-width: 1024px) and (max-width: 1199px) {
+    .block-width {
+        width: calc(100% - 200px);
+       }
+}

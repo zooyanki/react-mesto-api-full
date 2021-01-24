@@ -1,0 +1,10 @@
+.element__image {
+    position: relative;
+    background-image: white;
+    margin: 0;
+    width: 282px;
+    height: 282px;
+    object-fit: cover;
+    z-index: 0;
+    cursor: pointer;
+}

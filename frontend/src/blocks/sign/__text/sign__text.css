@@ -1,0 +1,13 @@
+.sign__text {
+    width: 358px;
+    font-size: 14px;
+    line-height: 1.2;
+    text-align: center;
+    color: #FFFFFF;
+}
+
+@media screen and (min-width: 300px) and (max-width: 768px) {
+    .sign__text {
+        width: 260px;
+    }
+}

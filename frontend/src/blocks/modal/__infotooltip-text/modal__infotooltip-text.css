@@ -1,0 +1,24 @@
+.modal__infotooltip-text {
+    color: black;
+    width: 358px;
+    font-weight: 900;
+    font-size: 24px;
+    line-height: 1.2;
+    text-align: center;
+    margin: 32px 0 60px 0;
+
+}
+
+@media screen and (min-width: 426px) and (max-width: 768px) {
+    .modal__infotooltip-text {
+        width: 244px;
+        font-size: 20px
+    }
+}
+
+@media screen and (min-width: 300px) and (max-width: 425px) {
+    .modal__infotooltip-text {
+        width: 244px;
+        font-size: 20px;
+    }
+}

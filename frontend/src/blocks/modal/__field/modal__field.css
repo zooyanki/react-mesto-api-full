@@ -1,0 +1,21 @@
+.modal__field {
+    border: none;
+    width: 358px;
+    height: 27px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 1.21;
+    cursor: pointer;
+    margin: 0;
+}
+
+.modal__field:last-child {
+    margin: 0;
+}
+
+@media screen and (min-width: 300px) and (max-width: 768px) {
+    .modal__field {
+    width: 208px;
+    }
+}

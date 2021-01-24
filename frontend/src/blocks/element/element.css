@@ -1,0 +1,16 @@
+@import url(__group/element__group.css);
+@import url(__image/element__image.css);
+@import url(__name/element__name.css);
+@import url(__text/element__text.css);
+@import url(__trash/element__trash.css);
+@import url(__image-block/element__image-block.css);
+@import url(__group-container/element__group-container.css);
+@import url(__group-number/element__group-number.css);
+
+.element {
+    border-radius: 10px;
+    background-color: white;
+    overflow: hidden;
+    position: relative;
+    width: 282px;
+}

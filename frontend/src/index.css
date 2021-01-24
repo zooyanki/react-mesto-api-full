@@ -1,0 +1,43 @@
+body {
+    background-color: black;
+    color: white;
+    max-width: 1200px;
+    min-width: 300px;
+    height: 100%; 
+    margin: 0 auto;
+    font-family: 'inter', 'Arial', sans-serif;
+    font-style: normal;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+    display: grid;
+}
+
+
+@import url(./vendor/normalize.css);
+/*@import url(./fonts/inter.css);*/
+@import url(./blocks/block-width/block-width.css);
+@import url(./blocks/content/content.css);
+@import url(./blocks/header/header.css);
+@import url(./blocks/profile/profile.css);
+@import url(./blocks/elements/elements.css);
+@import url(./blocks/element/element.css);
+@import url(./blocks/footer/footer.css);
+@import url(./blocks/modal/modal.css);
+@import url(./blocks//sign/sign.css);
+
+/*Модификаторы*/
+@import url(./blocks/element/__group/_visible/element__group_visible.css);
+@import url(./blocks/element/__group/_invisible/element__group_invisible.css);
+@import url(./blocks/modal/_opened/modal_opened.css);
+@import url(./blocks/modal/__overlay/_render/modal__overlay_render.css);
+@import url(./blocks/modal/__field/_error/modal__field_error.css);
+@import url(./blocks/modal/__input-error/_active/modal__input-error_active.css);
+@import url(./blocks/modal/__submit-button/_invalid/modal__submit-button_invalid.css);
+@import url(./blocks/modal/__heading/_confirmpopup/modal__heading_confirmpopup.css);
+@import url(./blocks/element/__trash/_invisible/element__trash_invisible.css);
+@import url(./blocks/header/__header/_mobile/header__header_mobile.css);
+@import url(./blocks/header/__link-block-mobile/_open/header__link-block-mobile_open.css);

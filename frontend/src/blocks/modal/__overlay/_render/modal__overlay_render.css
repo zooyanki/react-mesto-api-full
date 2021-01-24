@@ -1,0 +1,4 @@
+.modal__overlay_render {
+    opacity: 0.9;
+    grid-template-rows: 33px 1fr 1fr;
+}

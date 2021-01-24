@@ -1,0 +1,9 @@
+.modal__render-text {
+    z-index: 10;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 15px;
+    text-align: left;
+    grid-row: 3;
+    grid-column: 2; 
+}

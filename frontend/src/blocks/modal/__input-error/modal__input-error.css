@@ -1,0 +1,17 @@
+.modal__input-error {
+    position: relative;
+    width: 358px;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 1.25;
+    color: #FF0000;
+    text-align: left;
+    opacity: 0;
+    transition: visibility 0.5s, opacity 0.5s linear;
+}
+
+@media screen and (min-width: 300px) and (max-width: 768px) {
+    .modal__input-error {
+    width: 208px;
+    }
+}

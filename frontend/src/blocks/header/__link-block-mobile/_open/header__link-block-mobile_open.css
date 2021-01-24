@@ -1,0 +1,9 @@
+.header__link-block-mobile_open {
+    display: none;
+    }
+
+@media screen and (min-width: 300px) and (max-width: 426px) {
+.header__link-block-mobile_open {
+    display: flex;
+    }
+}

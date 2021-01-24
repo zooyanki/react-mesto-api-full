@@ -1,0 +1,19 @@
+.sign__input {
+    background-color: black;
+    color: white;
+    width: 358px;
+    height: 27px;
+    border: none;
+    padding: 0;
+    margin-bottom: 30px;
+    border-bottom: 2px solid #CCCCCC;
+    font-size: 14px;
+    line-height: 1.21;
+    font-weight: 500;
+}
+
+@media screen and (min-width: 300px) and (max-width: 768px) {
+    .sign__input {
+    width: 260px;
+    }
+}

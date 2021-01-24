@@ -1,0 +1,13 @@
+.modal__form {
+    position: relative;
+    display: grid;
+    z-index: 10;
+    grid-template-columns: auto 1fr auto;
+    grid-template-rows: 33px 1fr;
+}
+
+@media screen and (min-width: 300px) and (max-width: 425px) {
+    .modal__form {
+        grid-template-rows: 55px 1fr;
+    }
+}

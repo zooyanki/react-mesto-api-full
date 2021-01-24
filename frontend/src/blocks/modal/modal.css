@@ -1,0 +1,30 @@
+@import url(__button-close/modal__button-close.css);
+@import url(__form/modal__form.css);
+@import url(__frame/modal__frame.css);
+@import url(__heading/modal__heading.css);
+@import url(__submit-button/modal__submit-button.css);
+@import url(__field/modal__field.css);
+@import url(__overlay/modal__overlay.css);
+@import url(__render-text/modal__render-text.css);
+@import url(__render/modal__render.css);
+@import url(__input-error/modal__input-error.css);
+@import url(__label/modal__label.css);
+@import url(__infotooltip-image/modal__infotooltip-image.css);
+@import url(__infotooltip-text/modal__infotooltip-text.css);
+
+.modal {
+    z-index: 100;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    bottom: 0;
+    opacity: 0;
+    visibility: hidden;
+    transition: visibility 0.5s, opacity 0.5s linear;
+}
+

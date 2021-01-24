@@ -1,0 +1,8 @@
+.profile__overlay-background {
+    background-color: black;
+    width: 100%;
+    height: 100%;
+    opacity: 0.8;
+    grid-row: 1;
+    grid-column: 1;
+}

@@ -1,0 +1,13 @@
+.header__link-block {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+@media screen and (min-width: 300px) and (max-width: 426px) {
+    .header__link-block {
+        display: none;
+    }
+}
