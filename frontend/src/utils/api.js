@@ -80,11 +80,11 @@ export default class Api {
 }
 
 export const api = new Api({ 
-  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-16', 
-  headers: { 
-    authorization: '588c72f6-47fd-494a-9f61-2083e374b77d', 
-    'Content-Type': 'application/json' 
-  } 
+  baseUrl: 'http://api.zooyanki.students.nomoredomains.rocks', 
+  // headers: { 
+  //   authorization: '588c72f6-47fd-494a-9f61-2083e374b77d', 
+  //   'Content-Type': 'application/json' 
+  // } 
 });
 
 
