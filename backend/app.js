@@ -23,7 +23,7 @@ mongoose.connect('mongodb://localhost:27017/mestodb', {
 
 app.use(express.json({ type: '*/*' }));
 
-app.use(express.static('../frontend/public'));
+app.use(express.static(path.join(__dirname, '../frontend/build')));
 
 app.use(requestLogger);
 
