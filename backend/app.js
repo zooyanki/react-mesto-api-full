@@ -22,7 +22,7 @@ mongoose.connect('mongodb://localhost:27017/mestodb', {
 });
 
 app.use(function(req, res, next) {
-  res.header('Access-Control-Allow-Origin', 'http://api.zooyanki.students.nomoredomains.rocks');
+  res.header('Access-Control-Allow-Origin', 'http://zooyanki.students.nomoredomains.rocks');
   next();
 });
 
