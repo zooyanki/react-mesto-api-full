@@ -35,7 +35,9 @@ export default class ApiReg {
         return this._fetch(`/signin`, { 
             method: 'POST',
             headers: {
-              'Content-Type' : 'application/json'},
+                'Content-Type' : 'application/json'
+            },      
+            credentials: 'include',
             body: JSON.stringify({
                 email,
                 password
@@ -45,10 +47,7 @@ export default class ApiReg {
             if (data.token) {
                 localStorage.setItem('token', data.token);
                 return data;   
-            } else {
-                return
-            }
-            
+            }            
         })
     }
 
