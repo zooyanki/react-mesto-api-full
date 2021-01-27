@@ -81,7 +81,7 @@ export default class Api {
 
 export const api = new Api({ 
   baseUrl: 'http://api.zooyanki.students.nomoredomains.rocks', 
-  headers: {
+  headers: {    
     'Content-Type': 'application/json' 
   } 
 });
