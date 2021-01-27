@@ -1,5 +1,6 @@
 const { Joi, celebrate } = require('celebrate');
 const { errors } = require('celebrate');
+const cors = require('cors');
 
 const express = require('express');
 const mongoose = require('mongoose');
@@ -21,15 +22,7 @@ mongoose.connect('mongodb://localhost:27017/mestodb', {
   useFindAndModify: false,
 });
 
-app.use(function(req, res, next) {
-  res.header('Access-Control-Allow-Origin', 'http://zooyanki.students.nomoredomains.rocks');
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-  res.header('Access-Control-Allow-Methods', 'GET, OPTION, HEAD, PUT, PATCH, POST, DELETE');
-  if (req.method === 'OPTION') {
-    red.send(200)
-  }
-  next();
-});
+app.use(res.send);
 
 app.use(express.json({ type: '*/*' }));
 
