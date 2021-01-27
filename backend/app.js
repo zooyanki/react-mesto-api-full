@@ -36,7 +36,10 @@ mongoose.connect('mongodb://localhost:27017/mestodb', {
 // };
 
 app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Origin', 'http://zooyanki.students.nomoredomains.rocks');
+  res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
+
+  next();
 });
 
 app.use(express.json({ type: '*/*' }));
