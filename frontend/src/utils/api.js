@@ -80,11 +80,10 @@ export default class Api {
 }
 
 export const api = new Api({ 
-  baseUrl: 'http://api.zooyanki.students.nomoredomains.rocks', 
-  // headers: { 
-  //   authorization: '588c72f6-47fd-494a-9f61-2083e374b77d', 
-  //   'Content-Type': 'application/json' 
-  // } 
+  baseUrl: 'https://api.zooyanki.students.nomoredomains.rocks', 
+  headers: {
+    'Content-Type': 'application/json' 
+  } 
 });
 
 
