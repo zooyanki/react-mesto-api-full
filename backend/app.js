@@ -35,9 +35,17 @@ mongoose.connect('mongodb://localhost:27017/mestodb', {
 //   credentials: true,
 // };
 
-app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', 'http://zooyanki.students.nomoredomains.rocks');
-  res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
+const allowedCors = [
+  'http://zooyanki.students.nomoredomains.rocks',
+  'localhost:3000'
+];
+
+app.use(function(req, res, next) {
+  const { origin } = req.headers; // Записываем в переменную origin соответствующий заголовок
+
+  if (allowedCors.includes(origin)) { // Проверяем, что значение origin есть среди разрешённых доменов
+    res.header('Access-Control-Allow-Origin', origin);
+  }
 
   next();
 });
