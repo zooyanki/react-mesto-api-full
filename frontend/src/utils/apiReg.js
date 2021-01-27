@@ -32,7 +32,7 @@ export default class ApiReg {
     }
 
     signin(password, email) {
-        return this._fetch(`/signin`, {   //!!!!!!!!!! What is FETCH???
+        return this._fetch(`/signin`, { 
             method: 'POST',
             headers: {
               'Content-Type' : 'application/json'},

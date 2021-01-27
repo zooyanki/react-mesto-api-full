@@ -22,7 +22,17 @@ mongoose.connect('mongodb://localhost:27017/mestodb', {
   useFindAndModify: false,
 });
 
-app.use(cors());
+const options = {
+  origin: [
+  'http://localhost:8080',
+  'http://zooyanki.students.nomoredomains.rocks/',
+  ],
+  methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
+  preflightContinue: false,  optionsSuccessStatus: 204,
+  allowedHeaders: ['Content-Type', 'origin', 'Authorization'],
+  credentials: true,};
+
+app.use('*', cors(options));
 
 app.use(express.json({ type: '*/*' }));
 
