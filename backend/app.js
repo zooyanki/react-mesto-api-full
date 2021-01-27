@@ -4,6 +4,8 @@ const { errors } = require('celebrate');
 const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path');
+const cors = require('cors');
+
 const usersRouter = require('./routes/user.js');
 const cardsRouter = require('./routes/cards.js');
 
@@ -21,12 +23,12 @@ mongoose.connect('mongodb://localhost:27017/mestodb', {
   useFindAndModify: false,
 });
 
-app.use(function(req, res, next) {
-  res.header('Access-Control-Allow-Origin', 'http://zooyanki.students.nomoredomains.rocks');
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-  res.header('Access-Control-Allow-Methods', 'GET, HEAD, PUT, PATCH, POST, DELETE');
-  next();
-});
+const corsOption = {
+  origin: 'http://zooyanki.students.nomoredomains.rocks',
+  optionsSuccessStatus: 200
+}
+
+app.use(cors(corsOption));
 
 app.use(express.json({ type: '*/*' }));
 
