@@ -16,19 +16,11 @@ export default class Api {
     }
   
     getInitialCards() {
-      return this._fetch(`/cards`), {
-        headers: {
-          'Authorization' : `${cookieValue}`
-        }      
-      }
+      return this._fetch(`/cards`)
     }
 
     getUserInfo() {
-      return this._fetch(`/users/me`), {
-        headers: {
-          'Authorization' : `${cookieValue}`
-        }      
-      }
+      return this._fetch(`/users/me`)
     }
 
     setUserInfo(name, about) {
@@ -88,10 +80,7 @@ export default class Api {
     }
 }
 
-const cookieValue = document.cookie.split(';');
-console.log(cookieValue);
-
-
+console.log(document.cookie);
 export const api = new Api({ 
   baseUrl: 'http://api.zooyanki.students.nomoredomains.rocks',  
   credentials: 'include', 
