@@ -15,20 +15,12 @@ export default class Api {
       })
     }
   
-    getInitialCards(token) {
-      return this._fetch(`/cards`),{
-        headers: {
-          'Authorization' : `Bearer ${token}`
-        }
-      };
+    getInitialCards() {
+      return this._fetch(`/cards`);
     }
 
-    getUserInfo(token) {
-      return this._fetch(`/users/me`), {
-        headers: {
-          'Authorization' : `Bearer ${token}`
-        }
-      };
+    getUserInfo() {
+      return this._fetch(`/users/me`);
     }
 
     setUserInfo(name, about) {
