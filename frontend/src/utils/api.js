@@ -11,7 +11,7 @@ export default class Api {
         if (res.ok) {
           return res.json();
         }
-        return Promise.reject(`Хьюстон, у нас проблемы: ${res.status}`);
+        return Promise.reject(`Хьюстон, у нас проблемы: ${res.status}, ${res.json(data)}`);
       })
     }
   
