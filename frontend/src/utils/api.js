@@ -16,11 +16,19 @@ export default class Api {
     }
   
     getInitialCards(token) {
-      return this._fetch(`/cards`);
+      return this._fetch(`/cards`),{
+        headers: {
+          'Authorization' : `Bearer ${token}`
+        }
+      };
     }
 
     getUserInfo(token) {
-      return this._fetch(`/users/me`);
+      return this._fetch(`/users/me`), {
+        headers: {
+          'Authorization' : `Bearer ${token}`
+        }
+      };
     }
 
     setUserInfo(name, about) {
@@ -82,7 +90,6 @@ export default class Api {
 
 export const api = new Api({ 
   baseUrl: 'http://api.zooyanki.students.nomoredomains.rocks',
-  Authorization : `Bearer ${token}`,
   credentials: 'include', 
   headers: {    
     'Content-Type': 'application/json' 
