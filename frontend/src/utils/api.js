@@ -88,7 +88,9 @@ export default class Api {
     }
 }
 
-const cookieValue = document.cookie.split(';').find(row => row.startsWith('token').split('=')[1]);
+const cookieValue = document.cookie.split(';');
+console.log(cookieValue);
+
 
 export const api = new Api({ 
   baseUrl: 'http://api.zooyanki.students.nomoredomains.rocks',  
