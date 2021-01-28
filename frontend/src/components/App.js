@@ -53,6 +53,7 @@ function App() {
     }
 
     api.getUserInfo().then((userInfo)=>{
+      console.log(userInfo);
       setCurrentUser(userInfo);
       }).catch((err) =>
         console.log("Упс... что-то пошло не так"));

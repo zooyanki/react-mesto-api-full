@@ -22,7 +22,7 @@ export default class Api {
     getUserInfo() {
       return this._fetch(`/users/me`);
     }
-
+    
     setUserInfo(name, about) {
       return this._fetch(`/users/me`, {
         method: `PATCH`,

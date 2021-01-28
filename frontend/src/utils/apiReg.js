@@ -2,7 +2,7 @@ export default class ApiReg {
     constructor(option) {
         this.headers = option.headers;
         this.baseUrl = option.baseUrl;
-        this.credentials = option.credentials
+        this.credentials = option.credentials;
     }
 
     _fetch(url, opt={}) {      
