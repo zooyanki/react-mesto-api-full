@@ -82,7 +82,7 @@ export default class Api {
 
 export const api = new Api({ 
   baseUrl: 'http://api.zooyanki.students.nomoredomains.rocks',
-  authorization: req.user,
+  authorization: `Bearer ${token}`,
   credentials: 'include', 
   headers: {    
     'Content-Type': 'application/json' 
