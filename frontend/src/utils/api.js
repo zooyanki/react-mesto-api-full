@@ -16,11 +16,19 @@ export default class Api {
     }
   
     getInitialCards() {
-      return this._fetch(`/cards`);
+      return this._fetch(`/cards`), {
+        headers: {
+          'Authorization' : `${cookieValue}`
+        }      
+      }
     }
 
     getUserInfo() {
-      return this._fetch(`/users/me`);
+      return this._fetch(`/users/me`), {
+        headers: {
+          'Authorization' : `${cookieValue}`
+        }      
+      }
     }
 
     setUserInfo(name, about) {
@@ -80,9 +88,13 @@ export default class Api {
     }
 }
 
+const cookieValue = document.cookie
+  .split('; ')
+  .find(row => row.startsWith('token'))
+  .split('=')[1];
+
 export const api = new Api({ 
-  baseUrl: 'http://api.zooyanki.students.nomoredomains.rocks',
-  Authorization : `${localStorage.getItem('token')}`,
+  baseUrl: 'http://api.zooyanki.students.nomoredomains.rocks',  
   credentials: 'include', 
   headers: {    
     'Content-Type': 'application/json' 
