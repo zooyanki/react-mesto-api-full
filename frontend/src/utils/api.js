@@ -15,11 +15,11 @@ export default class Api {
       })
     }
   
-    getInitialCards() {
+    getInitialCards(token) {
       return this._fetch(`/cards`);
     }
 
-    getUserInfo() {
+    getUserInfo(token) {
       return this._fetch(`/users/me`);
     }
 
