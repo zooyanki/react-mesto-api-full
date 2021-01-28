@@ -56,12 +56,17 @@ function App() {
       console.log(userInfo);
       setCurrentUser(userInfo);
       }).catch((err) =>
-        console.log("Упс... что-то пошло не так"));
+        {console.log("Упс... что-то пошло не так");
+        console.log(err);
+      });
+        
 
     api.getInitialCards().then((item) => {
         setCards(item);
         }).catch((err) =>
-          console.log("Упс... что-то пошло не так"));  
+        {console.log("Упс... что-то пошло не так");
+        console.log(err);
+      });  
   },[])
 
 //Удаление карты
