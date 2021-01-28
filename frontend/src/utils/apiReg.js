@@ -1,5 +1,3 @@
-import { options } from "../../../backend/routes/user";
-
 export default class ApiReg {
     constructor(options) {
         this.headers = options.headers;
