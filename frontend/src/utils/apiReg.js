@@ -1,8 +1,10 @@
+import { options } from "../../../backend/routes/user";
+
 export default class ApiReg {
-    constructor(option) {
-        this.headers = option.headers;
-        this.baseUrl = option.baseUrl;
-        this.credentials = option.credentials;
+    constructor(options) {
+        this.headers = options.headers;
+        this.baseUrl = options.baseUrl;
+        this.credentials = options.credentials;
     }
 
     _fetch(url, opt={}) {      

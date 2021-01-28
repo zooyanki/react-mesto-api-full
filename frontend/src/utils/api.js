@@ -22,7 +22,7 @@ export default class Api {
     getUserInfo() {
       return this._fetch(`/users/me`);
     }
-    
+
     setUserInfo(name, about) {
       return this._fetch(`/users/me`, {
         method: `PATCH`,
@@ -82,6 +82,7 @@ export default class Api {
 
 export const api = new Api({ 
   baseUrl: 'http://api.zooyanki.students.nomoredomains.rocks',
+  authorization: req.user,
   credentials: 'include', 
   headers: {    
     'Content-Type': 'application/json' 

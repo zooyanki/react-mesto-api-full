@@ -74,9 +74,9 @@ module.exports.login = (req, res) => {
       res.send('OK');
     })
     .catch((err) => {
-      res
-        .status(401)
-        .send({ message: err.message });
+      if (err) {
+        return next(err);
+      }
     });
 };
 
