@@ -42,7 +42,7 @@ module.exports.deleteCard = (req, res, next) => {
 
 module.exports.addLikeCard = (req, res, next) => {
   Cards.findByIdAndUpdate(req.params.cardId, { $addToSet: { likes: req.user._id } }, { new: true })
-    .then((like) => res.send({ data: like }))
+    .then((like) => res.send(like))
     .catch((err) => {
       if (err) {
         return next(err);
@@ -52,7 +52,7 @@ module.exports.addLikeCard = (req, res, next) => {
 
 module.exports.removeLikeCard = (req, res, next) => {
   Cards.findByIdAndUpdate(req.params.cardId, { $pull: { likes: req.user._id } }, { new: true })
-    .then((like) => res.send({ data: like }))
+    .then((like) => res.send(like))
     .catch((err) => {
       if (err) {
         return next(err);
