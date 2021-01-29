@@ -64,7 +64,7 @@ module.exports.updateAvatar = (req, res, next) => {
     });
 };
 
-module.exports.login = (req, res) => {
+module.exports.login = (req, res, next) => {
   const { email, password } = req.body;
 
   return User.findUserByCredentials(email, password)
@@ -75,6 +75,7 @@ module.exports.login = (req, res) => {
     })
     .catch((err) => {
       res.status(401).send({message: err})
+
     });
 };
 
