@@ -2,11 +2,10 @@ export default class Api {
     constructor(options) {
       this.headers = options.headers;
       this.baseUrl = options.baseUrl;
-      this.credentials = options.credentials;
     }
 
     _fetch(url, opt={}) {      
-      return fetch(this.baseUrl+url,{headers: this.headers, credentials: this.credentials, ...opt})
+      return fetch(this.baseUrl+url,{headers: this.headers, ...opt})
       .then((res) => {
         if (res.ok) {
           return res.json();
@@ -83,7 +82,6 @@ export default class Api {
 console.log(document.cookie);
 export const api = new Api({ 
   baseUrl: 'http://api.zooyanki.students.nomoredomains.rocks',  
-//  credentials: 'include', 
   headers: {    
     'Content-Type': 'application/json',
     'authorization': 'Bearer '+ window.localStorage.getItem('token')

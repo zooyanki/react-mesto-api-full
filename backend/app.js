@@ -23,21 +23,10 @@ mongoose.connect('mongodb://localhost:27017/mestodb', {
   useFindAndModify: false,
 });
 
-// const options = {
-//   origin: [
-//   'http://localhost:3000',
-//   'http://zooyanki.students.nomoredomains.rocks/',
-//   ],
-//   methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
-//   preflightContinue: false,
-//   optionsSuccessStatus: 204,
-//   allowedHeaders: ['Content-Type', 'origin', 'Authorization'],
-//   credentials: true,
-// };
 
 const allowedCors = [
   'http://zooyanki.students.nomoredomains.rocks',
-  'http://api.zooyanki.students.nomoredomains.rocks',
+  'http://api.zooyanki.students.nomoredomains.rocks'
 ];
 
 app.use(function(req, res, next) {
@@ -47,8 +36,7 @@ console.log('here', req.url, origin);
   if (allowedCors.includes(origin)) { // Проверяем, что значение origin есть среди разрешённых доменов
     res.setHeader('Access-Control-Allow-Origin', origin);
     res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, authorization');
-    res.setHeader('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
-    res.setHeader('Access-Control-Allow-Credentials', 'true');
+    res.setHeader('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE, OPTIONS');
   }
   console.log('headers: ', res.getHeaders());
 
