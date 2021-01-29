@@ -36,11 +36,18 @@ mongoose.connect('mongodb://localhost:27017/mestodb', {
 // };
 
 app.use(function(req, res, next) {
-  // Проверяем, что значение origin есть среди разрешённых доменов
-    res.header('Access-Control-Allow-Origin', '*zooyanki.students.nomoredomains.rocks');
-    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-    res.header('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
-    res.header('Access-Control-Allow-Credentials', 'true');
+
+  const { origin } = req.headers; // Записываем в переменную origin соответствующий заголовок
+console.log('here', req.url, origin);
+  //if (allowedCors.includes(origin)) { // Проверяем, что значение origin есть среди разрешённых доменов
+    res.setHeader('Access-Control-Allow-Origin', origin);
+    res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, authorization');
+    res.setHeader('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
+    res.setHeader('Access-Control-Allow-Credentials', 'true');
+  //}i
+  console.log('headers: ', res.getHeaders());
+
+
   if (req.method === "OPTIONS") {
     res.send(200);
   } else {

@@ -83,9 +83,10 @@ export default class Api {
 console.log(document.cookie);
 export const api = new Api({ 
   baseUrl: 'http://api.zooyanki.students.nomoredomains.rocks',  
-  credentials: 'include', 
+//  credentials: 'include', 
   headers: {    
-    'Content-Type': 'application/json' 
+    'Content-Type': 'application/json',
+    'authorization': 'Bearer '+ window.localStorage.getItem('token')
   } 
 });
 

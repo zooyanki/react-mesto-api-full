@@ -6,7 +6,9 @@ export default class ApiReg {
     }
 
     _fetch(url, opt={}) {      
-        return fetch(this.baseUrl+url,{headers: this.headers, credentials: this.credentials, ...opt})
+        return fetch(this.baseUrl+url,{headers: this.headers, 
+		//credentials: this.credentials,
+		...opt})
         .then((res) => {
             try {
                 if (res.ok) {
@@ -66,5 +68,5 @@ export default class ApiReg {
 
 export const apiReg = new ApiReg ({
     baseUrl: 'http://api.zooyanki.students.nomoredomains.rocks',
-    credentials: 'include',
+//    credentials: 'include',
 })

@@ -2,7 +2,7 @@ const Cards = require('../models/cards');
 
 module.exports.readCards = (req, res, next) => {
   Cards.find({})
-    .then((card) => res.send({ data: card }))
+    .then((card) => res.send( card ))
     .catch((err) => {
       if (err) {
         return next(err);
@@ -18,7 +18,7 @@ module.exports.createCard = (req, res, next) => {
   Cards.create({
     name, link, owner: req.user._id, likes, createdAt,
   })
-    .then((card) => res.send({ data: card }))
+    .then((card) => res.send(  card ))
     .catch((err) => {
       if (err) {
         return next(err);
@@ -31,7 +31,7 @@ module.exports.deleteCard = (req, res, next) => {
 
   if (owner === req.user._id) {
     Cards.findByIdAndRemove(req.params._id)
-      .then((card) => res.send({ data: card }))
+      .then((card) => res.send( card ))
       .catch((err) => {
         if (err) {
           return next(err);
