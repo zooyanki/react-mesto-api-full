@@ -56,7 +56,7 @@ module.exports.updateAvatar = (req, res, next) => {
   const { avatar } = req.body;
 
   User.findByIdAndUpdate(req.user._id, { avatar })
-    .then((ava) => res.send({ data: ava }))
+    .then((ava) => res.send(ava))
     .catch((err) => {
       if (err) {
         return next(err);
