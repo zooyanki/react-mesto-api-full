@@ -5,7 +5,7 @@ const User = require('../models/user');
 
 module.exports.readUsers = (req, res, next) => {
   User.find({})
-    .then((users) => res.send({ data: users }))
+    .then((users) => res.send( users ))
     .catch((err) => {
       if (err) {
         return next(err);
@@ -15,7 +15,7 @@ module.exports.readUsers = (req, res, next) => {
 
 module.exports.readUserId = (req, res, next) => {
   User.findById(req.params._id)
-    .then((user) => res.send({ data: user }))
+    .then((user) => res.send( user))
     .catch((err) => {
       if (err) {
         return next(err);
@@ -32,7 +32,7 @@ module.exports.createUser = (req, res, next) => {
       email: req.body.email,
       password: hash,
     }))
-    .then((user) => res.send({ data: user }))
+    .then((user) => res.send(user))
     .catch((err) => {
       if (err) {
         return next(err);
@@ -44,7 +44,7 @@ module.exports.updateUser = (req, res, next) => {
   const { name, about } = req.body;
 
   User.findByIdAndUpdate(req.user._id, { name, about })
-    .then((user) => res.send({ data: user }))
+    .then((user) => res.send( user ))
     .catch((err) => {
       if (err) {
         return next(err);
@@ -71,18 +71,16 @@ module.exports.login = (req, res) => {
     .then((user) => {
       const token = jwt.sign({ _id: user._id }, 'some-secret-key', { expiresIn: '7d' });
       res.cookie('token', token, { httpOnly: true });
-      res.send('OK');
+      res.send({token});
     })
     .catch((err) => {
-      if (err) {
-        return next(err);
-      }
+      res.status(401).send({message: err})
     });
 };
 
 module.exports.readUser = (req, res, next) => {
   User.findById(req.user._id)
-    .then((user) => res.send({ user }))
+    .then((user) => res.send( user ))
     .catch((err) => {
       if (err) {
         return next(err);
