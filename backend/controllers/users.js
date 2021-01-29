@@ -64,19 +64,19 @@ module.exports.updateAvatar = (req, res, next) => {
     });
 };
 
-module.exports.login = (req, res) => {
+module.exports.login = (req, res, next) => {
   const { email, password } = req.body;
 
   return User.findUserByCredentials(email, password)
     .then((user) => {
       const token = jwt.sign({ _id: user._id }, 'some-secret-key', { expiresIn: '7d' });
       res.cookie('token', token, { httpOnly: true });
-      res.send('OK');
+      res.send(token);
     })
-    .catch((err) => {
-      if (err) {
-        return next(err);
-      }
+    .catch ((err) => {
+      res
+        .status(401)
+        .send({ message: err.message });
     });
 };
 
