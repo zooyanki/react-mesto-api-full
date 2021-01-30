@@ -85,7 +85,7 @@ function App() {
         }).catch((err) =>
         console.log("Упс... что-то пошло не так"));
       } else {
-        api.remLikeCard(card._id).then((newCard) => {
+        api.remLikeCard(card._id, currentUser._id).then((newCard) => {
           const newCards = cards.map((c) => c._id === card._id ? newCard : c);
           setCards(newCards)
         }).catch((err) =>

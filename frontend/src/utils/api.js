@@ -61,20 +61,21 @@ export default class Api {
       });
     }
 
-    addLikeCard(addlike) {
-      return this._fetch(`/cards/likes/${addlike}`, {
+    addLikeCard(cardId) {
+      return this._fetch(`/cards/likes/${cardId}`, {
         method: `PUT`,
         body: JSON.stringify({
-          _id: addlike 
+          _id: cardId 
         })
       });
     }
 
-    remLikeCard(remlike) {
-      return this._fetch(`/cards/likes/${remlike}`, {
+    remLikeCard(cardId, likeOwnerId) {
+      return this._fetch(`/cards/likes/${cardId}`, {
         method: `DELETE`,
         body: JSON.stringify({
-          _id: remlike 
+          _id: cardId,
+          likeOwnerId: likeOwnerId 
         })
       });
     }

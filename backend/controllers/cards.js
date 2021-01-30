@@ -30,7 +30,7 @@ module.exports.deleteCard = (req, res, next) => {
   const { owner } = req.body;
 
   if (owner === req.user._id) {
-    Cards.findByIdAndRemove(req.body._id)
+    Cards.findByIdAndRemove(req.params._id)
       .then((card) => res.send( card ))
       .catch((err) => {
         if (err) {
@@ -52,9 +52,9 @@ module.exports.addLikeCard = (req, res, next) => {
 };
 
 module.exports.removeLikeCard = (req, res, next) => {
-  const { likes } = req.body;
+  const { likeOwnerId } = req.body;
 
-  if (likes._id === req.user._id) {
+  if (likeOwnerId === req.user._id) {
     Cards.findByIdAndRemove(req.params._id, { $pull: { likes: req.user } }, { new: true })
       .then((like) => res.send(like))
       .catch((err) => {
