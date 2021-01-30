@@ -85,12 +85,12 @@ app.use(errors());
 
 app.use((err, req, res, next) => {
   if (err.name === 'ValidationError') {
-    res.status(400).send({ message: 'Переданы некорректные данные ' });
+    return res.status(400).send({ message: 'Переданы некорректные данные ' });
   }
   if (err.name === 'CastError') {
-    res.status(404).send({ message: 'Запрашиваемый объект не найден' });
+    return res.status(404).send({ message: 'Запрашиваемый объект не найден' });
   }
-  res.status(500).send({ message: `'Ошибка': ${err}` });
+  return res.status(500).send({ message: `'Ошибка': ${err}` });
 });
 
 app.listen(PORT);
