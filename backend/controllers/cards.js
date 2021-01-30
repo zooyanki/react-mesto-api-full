@@ -55,7 +55,7 @@ module.exports.removeLikeCard = (req, res, next) => {
   const { likeOwnerId } = req.body;
 
   if (likeOwnerId === req.user._id) {
-    Cards.findByIdAndRemove(req.params._id, { $pull: { likes: req.user } }, { new: true })
+    Cards.findByIdAndRemove(req.params._id, { $pull: { likes: req.user } })
       .then((like) => res.send(like))
       .catch((err) => {
         if (err) {
