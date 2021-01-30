@@ -14,10 +14,10 @@ cardsRouter.post('/cards', celebrate({
   }),
 }), createCard);
 
-cardsRouter.delete('/cards/:cardId', deleteCard);
+cardsRouter.delete('/cards/:_id', deleteCard);
 
-cardsRouter.put('/cards/:cardId/likes', addLikeCard);
+cardsRouter.put('/cards/:_id/likes', addLikeCard);
 
-cardsRouter.delete('/cards/:cardId/likes', removeLikeCard);
+cardsRouter.delete('/cards/:_id/likes', removeLikeCard);
 
 module.exports = cardsRouter;
