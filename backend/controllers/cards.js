@@ -58,6 +58,7 @@ module.exports.removeLikeCard = (req, res, next) => {
     Cards.findByIdAndUpdate(req.params._id, { $pull: { likes: req.user }}, { new: true })
       .then((like) => res.send(like))
       .catch((err) => {
+        console.log(err);
         if (err) {
           return next(err);
         }
