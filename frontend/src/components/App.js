@@ -69,7 +69,7 @@ function App() {
 
 //Удаление карты
   const handleCardDelete = () => {
-    api.delInitialCards(targetCard._id).then(() => {
+    api.delInitialCards(targetCard._id, currentUser._id).then(() => {
       const newCards = cards.filter(item => item._id !== targetCard._id);
       setCards(newCards);
       }).catch((err) =>

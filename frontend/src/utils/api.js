@@ -51,11 +51,12 @@ export default class Api {
       });
     }
 
-    delInitialCards(del) {
-      return this._fetch(`/cards/${del}`, {
+    delInitialCards(cardId, owner) {
+      return this._fetch(`/cards/${cardId}`, {
         method: `DELETE`,
         body: JSON.stringify({
-          _id: del 
+          _id: cardId,
+          owner: owner
         })
       });
     }

@@ -28,9 +28,9 @@ module.exports.createCard = (req, res, next) => {
 
 module.exports.deleteCard = (req, res, next) => {
   const { owner } = req.body;
-  console.log(req.params._id);
+
   if (owner === req.user._id) {
-    Cards.findByIdAndRemove(req.params._id)
+    Cards.findByIdAndRemove(req.body._id)
       .then((card) => res.send( card ))
       .catch((err) => {
         if (err) {
