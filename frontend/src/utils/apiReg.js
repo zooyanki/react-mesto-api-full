@@ -1,3 +1,5 @@
+import { countDocuments } from "../../../backend/models/user";
+
 export default class ApiReg {
     constructor(options) {
         this.headers = options.headers;
@@ -37,7 +39,6 @@ export default class ApiReg {
             headers: {
                 'Content-Type' : 'application/json'
             },      
-            credentials: 'include',
             body: JSON.stringify({
                 email,
                 password
