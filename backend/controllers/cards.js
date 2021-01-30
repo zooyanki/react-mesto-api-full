@@ -42,8 +42,9 @@ module.exports.deleteCard = (req, res, next) => {
 
 module.exports.addLikeCard = (req, res, next) => {
   const { likes } = req.body;
+  const findItemId = likes.find(item => item._id);
 
-  if (likes.find(item => item._id) !== req.user._id) {
+  if (findItemId !== req.user._id) {
     Cards.findByIdAndUpdate(req.params._id, { $addToSet: { likes: req.user } }, { new: true })
       .then((like) => res.send(like))
       .catch((err) => {
@@ -56,8 +57,9 @@ module.exports.addLikeCard = (req, res, next) => {
 
 module.exports.removeLikeCard = (req, res, next) => {
   const { likes } = req.body;
+  const findItemId = likes.find(item => item._id);
 
-  if (likes.find(item => item._id) === req.user._id) {
+  if (findItemId === req.user._id) {
     Cards.findByIdAndRemove(req.params._id, { $pull: { likes: req.user } }, { new: true })
       .then((like) => res.send(like))
       .catch((err) => {
