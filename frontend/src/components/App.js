@@ -43,6 +43,7 @@ function App() {
       
       apiReg.usersme(token).then((res) => {
         if (res) {
+          setCurrentUser(res);
           setUserEmail(res.email);
           setLoggedIn(true);          
           history.push('/');
@@ -52,11 +53,11 @@ function App() {
           console.log("Упс... что-то пошло не так")); 
     }
 
-    api.getUserInfo().then((userInfo)=>{
-      setCurrentUser(userInfo);
-      }).catch((err) =>
-        {console.log("Упс... что-то пошло не так");
-      });
+    // api.getUserInfo().then((userInfo)=>{
+    //   setCurrentUser(userInfo);
+    //   }).catch((err) =>
+    //     {console.log("Упс... что-то пошло не так");
+    //   });
         
 
     api.getInitialCards().then((item) => {
