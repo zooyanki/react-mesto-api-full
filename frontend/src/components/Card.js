@@ -4,8 +4,8 @@ import {CurrentUserContext} from '../contexts/CurrentUserContext';
 
 function Card(props) {
     const currentUser = useContext(CurrentUserContext);
-    const isOwn = props.image.owner === currentUser._id;
-    const isLiked = props.image.likes.some(i => i._id === currentUser._id);
+    const isOwn = props.image.owner === currentUser && currentUser._id;
+    const isLiked = props.image.likes.some(i => i._id === currentUser && currentUser._id);
     function handleClick() {
         props.onCardClick(props.image);
     }
