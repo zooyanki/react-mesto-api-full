@@ -4,8 +4,15 @@ export default class Api {
       this.baseUrl = options.baseUrl;
     }
 
+    _getHeaders(){
+	return { 
+            ...this.headers,
+            authorization: 'Bearer '+ window.localStorage.getItem('token'),
+	}
+    }
+
     _fetch(url, opt={}) {      
-      return fetch(this.baseUrl+url,{headers: this.headers, ...opt})
+      return fetch(this.baseUrl+url,{headers: this._getHeaders(), ...opt})
       .then((res) => {
         if (res.ok) {
           return res.json();
