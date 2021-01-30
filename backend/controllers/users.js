@@ -43,7 +43,7 @@ module.exports.createUser = (req, res, next) => {
 module.exports.updateUser = (req, res, next) => {
   const { name, about } = req.body;
 
-  User.findByIdAndUpdate(req.user._id, { name, about })
+  User.findByIdAndUpdate(req.user._id, name, about)
     .then((user) => res.send( user ))
     .catch((err) => {
       if (err) {
@@ -55,7 +55,7 @@ module.exports.updateUser = (req, res, next) => {
 module.exports.updateAvatar = (req, res, next) => {
   const { avatar } = req.body;
 
-  User.findByIdAndUpdate(req.user._id, { avatar })
+  User.findByIdAndUpdate(req.user._id, avatar)
     .then((ava) => res.send(ava))
     .catch((err) => {
       if (err) {
