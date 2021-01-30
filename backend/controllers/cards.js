@@ -16,7 +16,7 @@ module.exports.createCard = (req, res, next) => {
   } = req.body;
 
   Cards.create({
-    name, link, owner: req.user._id, likes, createdAt,
+    name, link, owner: req.user, likes, createdAt,
   })
     .then((card) => res.send(card))
     .catch((err) => {
