@@ -41,21 +41,30 @@ module.exports.deleteCard = (req, res, next) => {
 };
 
 module.exports.addLikeCard = (req, res, next) => {
-  Cards.findByIdAndUpdate(req.params._id, { $addToSet: { likes: req.user._id } }, { new: true })
-    .then((like) => res.send(like))
-    .catch((err) => {
-      if (err) {
-        return next(err);
-      }
+  const { likes } = req.body;
+
+  if (!likes.indexOf(req.user._id)) {
+    Cards.findByIdAndUpdate(req.params._id, { $addToSet: { likes: req.user._id } }, { new: true })
+      .then((like) => res.send(like))
+      .catch((err) => {
+        if (err) {
+          return next(err);
+        }
     });
+  }
 };
 
 module.exports.removeLikeCard = (req, res, next) => {
-  Cards.findByIdAndRemove(req.params._id, { $pull: { likes: req.user._id } }, { new: true })
-    .then((like) => res.send(like))
-    .catch((err) => {
-      if (err) {
-        return next(err);
-      }
+  const { likes } = req.body;
+
+  if (likes.indexOf(req.user._id)) {
+
+    Cards.findByIdAndRemove(req.params._id, { $pull: { likes: req.user._id } }, { new: true })
+      .then((like) => res.send(like))
+      .catch((err) => {
+        if (err) {
+          return next(err);
+        }
     });
+  }
 };
