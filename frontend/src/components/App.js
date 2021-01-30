@@ -65,7 +65,7 @@ function App() {
         }).catch((err) =>
         {console.log("Упс... что-то пошло не так");
       });  
-  },[])
+  },[currentUser])
 
 //Удаление карты
   const handleCardDelete = () => {
