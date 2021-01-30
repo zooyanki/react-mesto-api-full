@@ -43,7 +43,7 @@ function App() {
       
       apiReg.usersme(token).then((res) => {
         if (res) {
-          setUserEmail(res.data.email);
+          setUserEmail(res.email);
           setLoggedIn(true);          
           history.push('/');
         }
