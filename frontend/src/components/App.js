@@ -154,6 +154,7 @@ const handleLogin = (email) => {
 
       if (location.pathname === "/") {
       localStorage.removeItem('token');
+      document.cookie('');
         history.push('/signin');      
       }
 
