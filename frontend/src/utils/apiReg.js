@@ -1,5 +1,3 @@
-import { countDocuments } from "../../../backend/models/user";
-
 export default class ApiReg {
     constructor(options) {
         this.headers = options.headers;
