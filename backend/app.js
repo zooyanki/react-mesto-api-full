@@ -48,8 +48,6 @@ app.use(function(req, res, next) {
 
 app.use(express.json({ type: '*/*' }));
 
-app.use(express.static(path.join(__dirname, '../frontend/build')));
-
 app.use(requestLogger);
 
 app.get('/crash-test', () => {
@@ -69,7 +67,7 @@ app.post('/signup', celebrate({
   body: Joi.object().keys({
     name: Joi.string().min(2).max(40),
     about: Joi.string().min(2).max(200),
-    avatar: Joi.string().uri(),
+    avatar: Joi.string().regex(/https?:\/\/\S+\.\S+/gm),
     email: Joi.string().required().email(),
     password: Joi.string().min(8),
   }),

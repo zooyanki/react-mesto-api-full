@@ -10,14 +10,26 @@ cardsRouter.get('/cards', readCards);
 cardsRouter.post('/cards', celebrate({
   body: Joi.object().keys({
     name: Joi.string().min(2).max(30),
-    link: Joi.string().uri(),
+    link: Joi.string().regex(/https?:\/\/\S+\.\S+/gm),
   }),
 }), createCard);
 
-cardsRouter.delete('/cards/:_id', deleteCard);
+cardsRouter.delete('/cards/:_id', celebrate({
+  params: Joi.object().keys({
+    _id: Joi.string().alphanum().length(24)
+  })
+}),deleteCard);
 
-cardsRouter.put('/cards/likes/:_id', addLikeCard);
+cardsRouter.put('/cards/:_id/likes', celebrate({
+  params: Joi.object().keys({
+    _id: Joi.string().alphanum().length(24)
+  })
+}),addLikeCard);
 
-cardsRouter.delete('/cards/likes/:_id', removeLikeCard);
+cardsRouter.delete('/cards/:_id/likes', celebrate({
+  params: Joi.object().keys({
+    _id: Joi.string().alphanum().length(24)
+  })
+}),removeLikeCard);
 
 module.exports = cardsRouter;

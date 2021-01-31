@@ -9,7 +9,11 @@ usersRouter.get('/users', readUsers);
 
 usersRouter.get('/users/me', readUser);
 
-usersRouter.get('/users/:_id', readUserId);
+usersRouter.get('/users/:_id', celebrate({
+  params: Joi.object().keys({
+    _id: Joi.string().alphanum().length(24)
+  })
+}),readUserId);
 
 usersRouter.patch('/users/me', celebrate({
   body: Joi.object().keys({
@@ -20,7 +24,7 @@ usersRouter.patch('/users/me', celebrate({
 
 usersRouter.patch('/users/me/avatar', celebrate({
   body: Joi.object().keys({
-    avatar: Joi.string().uri(),
+    avatar: Joi.string().regex(/https?:\/\/\S+\.\S+/gm),
   }),
 }), updateAvatar);
 

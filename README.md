@@ -4,4 +4,8 @@
 Пожалуйста, прикрепите в это описание ссылку на сайт, размещенный на Яндекс.Облаке.
 
 Ссылка:
+http://api.zooyanki.students.nomoredomains.rocks
 http://zooyanki.students.nomoredomains.rocks
+
+IP:
+178.154.228.191
