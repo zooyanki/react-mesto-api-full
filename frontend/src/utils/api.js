@@ -78,7 +78,7 @@ export default class Api {
     }
 
     remLikeCard(cardId, likeOwnerId) {
-      return this._fetch(`/cards/${cardId}/likes/`, {
+      return this._fetch(`/cards/${cardId}/likes`, {
         method: `DELETE`,
         body: JSON.stringify({
           _id: cardId,

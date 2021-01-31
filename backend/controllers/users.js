@@ -32,7 +32,7 @@ module.exports.createUser = (req, res, next) => {
       email: req.body.email,
       password: hash,
     }))
-    .then((user) => res.send(user))
+    .then((user) => res.send(user.name, user.about))
     .catch((err) => {
       if (err) {
         return next(err);
@@ -44,7 +44,7 @@ module.exports.updateUser = (req, res, next) => {
   const { name, about } = req.body;
 
   User.findByIdAndUpdate(req.user._id,{$set: {name, about}}, {new:true})
-    .then((user) => res.send( user ))
+    .then((user) => res.send(user))
     .catch((err) => {
       if (err) {
         return next(err);
