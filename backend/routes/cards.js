@@ -10,7 +10,7 @@ cardsRouter.get('/cards', readCards);
 cardsRouter.post('/cards', celebrate({
   body: Joi.object().keys({
     name: Joi.string().min(2).max(30),
-    link: Joi.string().regex(/https?:\/\/\S+\.\S+/gm),
+    link: Joi.string().regex(/https?:\/\/\S+\.\S+/m),
   }),
 }), createCard);
 
