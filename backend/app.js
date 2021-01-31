@@ -22,7 +22,9 @@ mongoose.connect('mongodb://localhost:27017/mestodb', {
 
 
 const allowedCors = [
+  'https://zooyanki.students.nomoredomains.rocks',
   'http://zooyanki.students.nomoredomains.rocks',
+  'https://api.zooyanki.students.nomoredomains.rocks',
   'http://api.zooyanki.students.nomoredomains.rocks'
 ];
 
