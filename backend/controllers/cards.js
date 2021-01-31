@@ -2,7 +2,7 @@ const Cards = require('../models/cards');
 
 module.exports.readCards = (req, res, next) => {
   Cards.find({})
-    .then((card) => res.send( card ))
+    .then((card) => res.send(card))
     .catch((err) => {
       if (err) {
         return next(err);
@@ -31,7 +31,7 @@ module.exports.deleteCard = (req, res, next) => {
 
   if (owner === req.user._id) {
     Cards.findByIdAndRemove(req.params._id)
-      .then((card) => res.send( card ))
+      .then((card) => res.send(card))
       .catch((err) => {
         if (err) {
           return next(err);
@@ -41,13 +41,12 @@ module.exports.deleteCard = (req, res, next) => {
 };
 
 module.exports.addLikeCard = (req, res, next) => {
-
-    Cards.findByIdAndUpdate(req.params._id, { $addToSet: { likes: req.user } }, { new: true })
-      .then((like) => res.send(like))
-      .catch((err) => {
-        if (err) {
-          return next(err);
-        }
+  Cards.findByIdAndUpdate(req.params._id, { $addToSet: { likes: req.user } }, { new: true })
+    .then((like) => res.send(like))
+    .catch((err) => {
+      if (err) {
+        return next(err);
+      }
     });
 };
 
@@ -55,12 +54,12 @@ module.exports.removeLikeCard = (req, res, next) => {
   const { likeOwnerId } = req.body;
 
   if (likeOwnerId === req.user._id) {
-    Cards.findByIdAndUpdate(req.params._id, { $pull: { likes: req.user._id }}, { new: true })
+    Cards.findByIdAndUpdate(req.params._id, { $pull: { likes: req.user._id } }, { new: true })
       .then((like) => res.send(like))
       .catch((err) => {
         if (err) {
           return next(err);
         }
-    });
+      });
   }
 };

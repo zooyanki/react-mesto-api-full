@@ -11,9 +11,9 @@ usersRouter.get('/users/me', readUser);
 
 usersRouter.get('/users/:_id', celebrate({
   params: Joi.object().keys({
-    _id: Joi.string().alphanum().length(24)
-  })
-}),readUserId);
+    _id: Joi.string().alphanum().length(24),
+  }),
+}), readUserId);
 
 usersRouter.patch('/users/me', celebrate({
   body: Joi.object().keys({

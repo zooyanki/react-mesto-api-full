@@ -5,7 +5,7 @@ const User = require('../models/user');
 
 module.exports.readUsers = (req, res, next) => {
   User.find({})
-    .then((users) => res.send( users ))
+    .then((users) => res.send(users))
     .catch((err) => {
       if (err) {
         return next(err);
@@ -15,7 +15,7 @@ module.exports.readUsers = (req, res, next) => {
 
 module.exports.readUserId = (req, res, next) => {
   User.findById(req.params._id)
-    .then((user) => res.send( user))
+    .then((user) => res.send(user))
     .catch((err) => {
       if (err) {
         return next(err);
@@ -47,7 +47,7 @@ module.exports.createUser = (req, res, next) => {
 module.exports.updateUser = (req, res, next) => {
   const { name, about } = req.body;
 
-  User.findByIdAndUpdate(req.user._id,{$set: {name, about}}, {new:true})
+  User.findByIdAndUpdate(req.user._id, { $set: { name, about } }, { new: true })
     .then((user) => res.send(user))
     .catch((err) => {
       if (err) {
@@ -59,7 +59,7 @@ module.exports.updateUser = (req, res, next) => {
 module.exports.updateAvatar = (req, res, next) => {
   const { avatar } = req.body;
 
-  User.findByIdAndUpdate(req.user._id, {$set: {avatar}}, {new: true})
+  User.findByIdAndUpdate(req.user._id, { $set: { avatar } }, { new: true })
     .then((ava) => res.send(ava))
     .catch((err) => {
       if (err) {
@@ -75,17 +75,16 @@ module.exports.login = (req, res, next) => {
     .then((user) => {
       const token = jwt.sign({ _id: user._id }, 'some-secret-key', { expiresIn: '7d' });
       res.cookie('token', token, { httpOnly: true });
-      res.send({token});
+      res.send({ token });
     })
     .catch((err) => {
-      res.status(401).send({message: err.message})
-
+      res.status(401).send({ message: err.message });
     });
 };
 
 module.exports.readUser = (req, res, next) => {
   User.findById(req.user._id)
-    .then((user) => res.send( user ))
+    .then((user) => res.send(user))
     .catch((err) => {
       if (err) {
         return next(err);
