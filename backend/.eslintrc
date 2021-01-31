@@ -1,7 +1,0 @@
-{
-  "extends": "airbnb-base",
-  "allow": ["foo_", "_bar"],
-  "allowAfterThis": true,
-  "allowAfterSuper": true,
-  "allowAfterThisConstructor": true
-}

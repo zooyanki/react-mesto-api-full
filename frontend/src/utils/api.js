@@ -69,7 +69,7 @@ export default class Api {
     }
 
     addLikeCard(cardId) {
-      return this._fetch(`/cards/likes/${cardId}`, {
+      return this._fetch(`/cards/${cardId}/likes`, {
         method: `PUT`,
         body: JSON.stringify({
           _id: cardId 
@@ -78,7 +78,7 @@ export default class Api {
     }
 
     remLikeCard(cardId, likeOwnerId) {
-      return this._fetch(`/cards/likes/${cardId}`, {
+      return this._fetch(`/cards/${cardId}/likes/`, {
         method: `DELETE`,
         body: JSON.stringify({
           _id: cardId,
