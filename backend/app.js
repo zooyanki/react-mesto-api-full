@@ -81,8 +81,15 @@ app.use('/', auth, usersRouter);
 
 app.use('/', auth, cardsRouter);
 
+class NotFoundError extends Error {
+  constructor(message) {
+    super(message);
+    this.name = "NotFoundError";
+  }
+}
+
 app.get('*', (req, res) => {
-  res.status(404).send({ message: 'Запрашиваемый ресурс не найден' });
+  throw new NotFoundError();
 });
 
 app.use(errorLogger);
@@ -95,6 +102,9 @@ app.use((err, req, res, next) => {
   }
   if (err.name === 'CastError') {
     return res.status(404).send({ message: 'Запрашиваемый объект не найден' });
+  }
+  if (err.name === 'NotFoundError') {
+    return res.status(404).send({message: 'Запрашиваемый ресурс не найден'});
   }
   return res.status(500).send({ message: `'Ошибка': ${err}` });
 });
