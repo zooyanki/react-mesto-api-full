@@ -32,9 +32,13 @@ module.exports.createUser = (req, res, next) => {
       email: req.body.email,
       password: hash,
     }))
-    .then((user) => res.send(user))
+    .then(() => res.send(true))
     .catch((err) => {
       if (err) {
+        if (err.name === 'MongoError' && err.code === 11000) {
+          return res.status(422);
+        }
+
         return next(err);
       }
     });
@@ -74,7 +78,7 @@ module.exports.login = (req, res, next) => {
       res.send({token});
     })
     .catch((err) => {
-      res.status(401).send({message: err})
+      res.status(401).send({message: err.message})
 
     });
 };
