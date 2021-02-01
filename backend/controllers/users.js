@@ -35,9 +35,9 @@ module.exports.createUser = (req, res, next) => {
     .then(() => res.send(true))
     .catch((err) => {
       if (err) {
-        if (err.name === 'MongoError' && err.code === 11000) {
-          return res.status(422);
-        }
+        // if (err.name === 'MongoError' && err.code === 11000) {
+        //   return res.status(422);
+        // }
 
         return next(err);
       }
