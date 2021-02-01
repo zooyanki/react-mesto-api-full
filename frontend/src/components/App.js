@@ -53,19 +53,14 @@ function App() {
           console.log("Упс... что-то пошло не так")); 
     }
 
-    // api.getUserInfo().then((userInfo)=>{
-    //   setCurrentUser(userInfo);
-    //   }).catch((err) =>
-    //     {console.log("Упс... что-то пошло не так");
-    //   });
-        
+      
 
     api.getInitialCards().then((item) => {
         setCards(item);
         }).catch((err) =>
         {console.log("Упс... что-то пошло не так");
       });  
-  },[userEmail])
+  },[loggedIn])
 
 //Удаление карты
   const handleCardDelete = () => {
@@ -153,14 +148,14 @@ const handleLogin = (email) => {
 
   const signOut = () => {
 
-      if (location.pathname === "/") {
+    if (location.pathname === "/") {
       localStorage.removeItem('token');
         history.push('/signin');      
-      }
+    }
 
-      if (location.pathname === "/signin") {
+    if (location.pathname === "/signin") {
         history.push('/signup');      
-      }
+    }
 
       if (location.pathname === "/signup") {
         history.push('/signin');    
