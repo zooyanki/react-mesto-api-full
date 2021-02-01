@@ -35,8 +35,7 @@ module.exports.createUser = (req, res, next) => {
     .then(() => res.send(true))
     .catch((err) => {
       if (err) {
-        if (err.name === 'MongoError' && err.code === 11000)
-          next(new Error('This item already exists, please try again'));
+        if (err.name === 'MongoError' && err.code === 11000) next(new Error('Данный пользователь уже существует'));
         else next(err);
 
         // return next(err);

@@ -62,5 +62,5 @@ export default class ApiReg {
 }
 
 export const apiReg = new ApiReg ({
-    baseUrl: 'http://api.zooyanki.students.nomoredomains.rocks',
+    baseUrl: 'https://api.zooyanki.students.nomoredomains.rocks',
 })

@@ -20,28 +20,27 @@ mongoose.connect('mongodb://localhost:27017/mestodb', {
   useFindAndModify: false,
 });
 
-
 const allowedCors = [
   'https://zooyanki.students.nomoredomains.rocks',
   'http://zooyanki.students.nomoredomains.rocks',
   'https://api.zooyanki.students.nomoredomains.rocks',
-  'http://api.zooyanki.students.nomoredomains.rocks'
+  'http://api.zooyanki.students.nomoredomains.rocks',
 ];
 
-app.use(function(req, res, next) {
+app.use((req, res, next) => {
+  const { origin } = req.headers;
 
-  const { origin } = req.headers; // Записываем в переменную origin соответствующий заголовок
-
-  if (allowedCors.includes(origin)) { // Проверяем, что значение origin есть среди разрешённых доменов
+  if (allowedCors.includes(origin)) {
     res.header('Access-Control-Allow-Origin', origin);
-    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, authorization');
+    res.header('Access-Control-Allow-Headers',
+      'Origin, X-Requested-With, Content-Type, Accept, authorization');
     res.header('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE, OPTIONS');
   }
 
-  if (req.method === "OPTIONS") {
+  if (req.method === 'OPTIONS') {
     res.send(200);
   } else {
-    next()
+    next();
   }
 });
 
@@ -81,7 +80,7 @@ app.use('/', auth, cardsRouter);
 class NotFoundError extends Error {
   constructor(message) {
     super(message);
-    this.name = "NotFoundError";
+    this.name = 'NotFoundError';
   }
 }
 
@@ -101,7 +100,7 @@ app.use((err, req, res, next) => {
     return res.status(404).send({ message: 'Запрашиваемый объект не найден' });
   }
   if (err.name === 'NotFoundError') {
-    return res.status(404).send({message: 'Запрашиваемый ресурс не найден'});
+    return res.status(404).send({ message: 'Запрашиваемый ресурс не найден' });
   }
   return res.status(500).send({ message: `'Ошибка': ${err}` });
 });

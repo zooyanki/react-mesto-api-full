@@ -90,11 +90,10 @@ export default class Api {
 
 console.log(document.cookie);
 export const api = new Api({ 
-  baseUrl: 'http://api.zooyanki.students.nomoredomains.rocks',  
+  baseUrl: 'https://api.zooyanki.students.nomoredomains.rocks',  
   headers: {    
     'Content-Type': 'application/json',
     'authorization': 'Bearer '+ window.localStorage.getItem('token')
   } 
 });
-
 
