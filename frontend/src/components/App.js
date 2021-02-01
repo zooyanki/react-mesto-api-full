@@ -38,6 +38,7 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(false);
 
   useEffect(()=>{
+
     if (localStorage.getItem('token')) {
       const token = localStorage.getItem('token');
       
@@ -51,15 +52,13 @@ function App() {
       })
       .catch((err) =>
           console.log("Упс... что-то пошло не так")); 
-    }
-
-      
-
-    api.getInitialCards().then((item) => {
+      api.getInitialCards().then((item) => {
         setCards(item);
         }).catch((err) =>
         {console.log("Упс... что-то пошло не так");
-      });  
+      }); 
+    
+    }       
   },[loggedIn])
 
 //Удаление карты
@@ -69,7 +68,7 @@ function App() {
       setCards(newCards);
       }).catch((err) =>
       console.log("Упс... что-то пошло не так"));
-    }
+  }
 //Добавление/удаление лайка
   const handleCardLike = (card) => {
       const isLiked = card.likes.some(item => item === currentUser._id);
@@ -131,7 +130,6 @@ const onLogin = (dataUser) => {
     .then((data) => {
         if (data.token) {
                 handleLogin(dataUser.email);
-                setLoggedIn(true);
                 openInfoToolTip();
                 history.push('/');
             }
@@ -151,15 +149,19 @@ const handleLogin = (email) => {
 
     if (location.pathname === "/") {
       localStorage.removeItem('token');
+      setLoggedIn(false);
+      setCurrentUser();
         history.push('/signin');      
-    }
+    }else
 
     if (location.pathname === "/signin") {
         history.push('/signup');      
-    }
+    }else
 
       if (location.pathname === "/signup") {
         history.push('/signin');    
+    }else{
+      history.push('/signup');   
     }
   }
 
@@ -206,6 +208,7 @@ const handleLogin = (email) => {
                         <main>
                           <Switch>
 
+                        
                             <ProtectedRoute exact path="/" loggedIn={loggedIn} component={Main} cards={cards} onConfirmPopup={openPopupConfirm} onEditProfile={openPopupEditor} onAddPlace={openPopupNewForm} onEditAvatar={openPopupAvatar} onCardClick={handleCardClick} onCardLike={handleCardLike}/>
 
                             <Route exact path="/signin">
@@ -214,6 +217,10 @@ const handleLogin = (email) => {
 
                             <Route exact path="/signup" >
                               <Register onRegister={onRegister}/>
+                            </Route>
+                              
+                            <Route>
+                              <Login onLogin={onLogin}/>
                             </Route>
 
                           </Switch>

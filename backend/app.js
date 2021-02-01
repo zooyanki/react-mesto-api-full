@@ -102,6 +102,10 @@ app.use((err, req, res, next) => {
   if (err.name === 'NotFoundError') {
     return res.status(404).send({ message: 'Запрашиваемый ресурс не найден' });
   }
+  if (err.name === 'EmailBusy') {
+    return res.status(400).send({ message: err.message });
+  }
+
   return res.status(500).send({ message: `'Ошибка': ${err}` });
 });
 

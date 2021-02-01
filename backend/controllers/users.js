@@ -15,7 +15,11 @@ module.exports.readUsers = (req, res, next) => {
 
 module.exports.readUserId = (req, res, next) => {
   User.findById(req.params._id)
-    .then((user) => res.send(user))
+    .then((user) => {
+      if (user) {
+        res.send(user);
+      } else { res.status(404).send({ message: 'Такого пользователя не существует' }); }
+    })
     .catch((err) => {
       if (err) {
         return next(err);
@@ -35,8 +39,11 @@ module.exports.createUser = (req, res, next) => {
     .then(() => res.send(true))
     .catch((err) => {
       if (err) {
-        if (err.name === 'MongoError' && err.code === 11000) next(new Error('Данный пользователь уже существует'));
-        else next(err);
+        if (err.name === 'MongoError' && err.code === 11000) {
+          const error = new Error('Данный пользователь уже существует');
+          error.name = 'EmailBusy';
+          next(error);
+        } else next(err);
 
         // return next(err);
       }
