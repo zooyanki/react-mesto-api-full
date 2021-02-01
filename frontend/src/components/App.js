@@ -131,6 +131,7 @@ const onLogin = (dataUser) => {
     .then((data) => {
         if (data.token) {
                 handleLogin(dataUser.email);
+                setLoggedIn(true);
                 openInfoToolTip();
                 history.push('/');
             }
