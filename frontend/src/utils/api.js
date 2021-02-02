@@ -63,7 +63,7 @@ export default class Api {
         method: `DELETE`,
         body: JSON.stringify({
           _id: cardId,
-          owner: owner
+          // owner: owner
         })
       });
     }

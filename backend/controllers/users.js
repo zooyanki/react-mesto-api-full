@@ -8,7 +8,7 @@ module.exports.readUsers = (req, res, next) => {
     .then((users) => res.send(users))
     .catch((err) => {
       if (err) {
-        return next(err);
+        next(err);
       }
     });
 };
@@ -22,7 +22,7 @@ module.exports.readUserId = (req, res, next) => {
     })
     .catch((err) => {
       if (err) {
-        return next(err);
+        next(err);
       }
     });
 };
@@ -44,8 +44,6 @@ module.exports.createUser = (req, res, next) => {
           error.name = 'EmailBusy';
           next(error);
         } else next(err);
-
-        // return next(err);
       }
     });
 };
@@ -57,7 +55,7 @@ module.exports.updateUser = (req, res, next) => {
     .then((user) => res.send(user))
     .catch((err) => {
       if (err) {
-        return next(err);
+        next(err);
       }
     });
 };
@@ -69,7 +67,7 @@ module.exports.updateAvatar = (req, res, next) => {
     .then((ava) => res.send(ava))
     .catch((err) => {
       if (err) {
-        return next(err);
+        next(err);
       }
     });
 };
@@ -93,7 +91,7 @@ module.exports.readUser = (req, res, next) => {
     .then((user) => res.send(user))
     .catch((err) => {
       if (err) {
-        return next(err);
+        next(err);
       }
     });
 };

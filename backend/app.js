@@ -92,7 +92,7 @@ app.use(errorLogger);
 
 app.use(errors());
 
-app.use((err, req, res, next) => {
+app.use((err, req, res) => {
   if (err.name === 'ValidationError') {
     return res.status(400).send({ message: 'Переданы некорректные данные ' });
   }

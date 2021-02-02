@@ -67,7 +67,7 @@ function App() {
       const newCards = cards.filter(item => item._id !== targetCard._id);
       setCards(newCards);
       }).catch((err) =>
-      console.log("Упс... что-то пошло не так"));
+      console.log(err.state));
   }
 //Добавление/удаление лайка
   const handleCardLike = (card) => {
