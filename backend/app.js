@@ -8,8 +8,11 @@ const cardsRouter = require('./routes/cards.js');
 
 const auth = require('./middlewares/auth');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
+const NotFoundError = require('./errors/notFoundError');
 
 const { login, createUser } = require('./controllers/users');
+
+
 
 const { PORT = 3000 } = process.env;
 const app = express();
@@ -77,36 +80,24 @@ app.use('/', auth, usersRouter);
 
 app.use('/', auth, cardsRouter);
 
-class NotFoundError extends Error {
-  constructor(message) {
-    super(message);
-    this.name = 'NotFoundError';
-  }
-}
-
-app.unsubscribe('*', () => {
-  throw new NotFoundError();
-});
-
 app.use(errorLogger);
+
+app.use('*', () => {
+  throw new NotFoundError('Адрес не найден');
+});
 
 app.use(errors());
 
-app.use((err, req, res) => {
-  if (err.name === 'ValidationError') {
-    return res.status(400).send({ message: 'Переданы некорректные данные ' });
-  }
-  if (err.name === 'CastError') {
-    return res.status(404).send({ message: 'Запрашиваемый объект не найден' });
-  }
-  if (err.name === 'NotFoundError') {
-    return res.status(404).send({ message: 'Запрашиваемый ресурс не найден' });
-  }
-  // if (err.name === 'MongoError') {
-  //   return res.status(400).send({ message: 'Данный пользователь уже существует' });
-  // }
+app.use((err, req, res, next) => {
+  const { statusCode = 500, message } = err;
 
-  return res.status(500).send({ message: `'Ошибка': ${err}` });
-});
+  res
+    .status(statusCode)
+    .send({
+      message: statusCode === 500
+        ? 'На сервере произошла ошибка'
+        : message
+    });
+}); 
 
 app.listen(PORT);

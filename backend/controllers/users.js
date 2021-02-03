@@ -1,6 +1,9 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
+const badRequestError = require('../errors/badRequestError');
+const notFoundError = require('../errors/notFoundError');
+
 const User = require('../models/user');
 
 module.exports.readUsers = (req, res, next) => {
@@ -18,7 +21,9 @@ module.exports.readUserId = (req, res, next) => {
     .then((user) => {
       if (user) {
         res.send(user);
-      } else { res.status(404).send({ message: 'Такого пользователя не существует' }); }
+      } else { 
+        throw new notFoundError('Пользователь не найден')
+      }
     })
     .catch((err) => {
       if (err) {
@@ -40,9 +45,9 @@ module.exports.createUser = (req, res, next) => {
     .catch((err) => {
       if (err) {
         if (err.name === 'MongoError' && err.code === 11000) {
-          res.status(400).send({ message: 'Данный пользователь уже существует' });
-          next(err);
+          next(new badRequestError('Такой пользователь уже существует'));
         }
+      next(err);
       }
     });
 };
