@@ -85,7 +85,7 @@ app.use('*', () => {
 app.use(errorLogger);
 app.use(errors());
 
-app.use((err, req, res, next) => {   //РУКИ ПРОЧЬ ОТ NEXT!!!!!!!!!!!!!!!!!!!!!!!
+app.use((err, req, res, next) => { // РУКИ ПРОЧЬ ОТ NEXT!!!!!!!!!!!!!!!!!!!!!!!
   const { statusCode = 500, message } = err;
 
   res

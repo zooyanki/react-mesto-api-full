@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 
 const BadRequestError = require('../errors/badRequestError');
 const NotFoundError = require('../errors/notFoundError');
-const Unauthorized = require('../errors/unauthorized')
+const Unauthorized = require('../errors/unauthorized');
 
 const User = require('../models/user');
 
@@ -22,9 +22,8 @@ module.exports.readUserId = (req, res, next) => {
     .then((user) => {
       if (!user) {
         next(new NotFoundError('Пользователь не найден'));
-      } else
-      {res.send(user)};
-    })
+      } else { res.send(user); }
+    });
 };
 
 module.exports.createUser = (req, res, next) => {
