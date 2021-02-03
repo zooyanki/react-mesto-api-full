@@ -12,8 +12,6 @@ const NotFoundError = require('./errors/notFoundError');
 
 const { login, createUser } = require('./controllers/users');
 
-
-
 const { PORT = 3000 } = process.env;
 const app = express();
 
@@ -80,15 +78,14 @@ app.use('/', auth, usersRouter);
 
 app.use('/', auth, cardsRouter);
 
-app.use(errorLogger);
-
 app.use('*', () => {
   throw new NotFoundError('Адрес не найден');
 });
 
+app.use(errorLogger);
 app.use(errors());
 
-app.use((err, req, res, next) => {
+app.use((err, req, res, next) => {   //РУКИ ПРОЧЬ ОТ NEXT!!!!!!!!!!!!!!!!!!!!!!!
   const { statusCode = 500, message } = err;
 
   res
@@ -96,8 +93,8 @@ app.use((err, req, res, next) => {
     .send({
       message: statusCode === 500
         ? 'На сервере произошла ошибка'
-        : message
+        : message,
     });
-}); 
+});
 
 app.listen(PORT);

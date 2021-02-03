@@ -1,8 +1,9 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
-const badRequestError = require('../errors/badRequestError');
-const notFoundError = require('../errors/notFoundError');
+const BadRequestError = require('../errors/badRequestError');
+const NotFoundError = require('../errors/notFoundError');
+const Unauthorized = require('../errors/unauthorized')
 
 const User = require('../models/user');
 
@@ -19,17 +20,11 @@ module.exports.readUsers = (req, res, next) => {
 module.exports.readUserId = (req, res, next) => {
   User.findById(req.params._id)
     .then((user) => {
-      if (user) {
-        res.send(user);
-      } else { 
-        throw new notFoundError('Пользователь не найден')
-      }
+      if (!user) {
+        next(new NotFoundError('Пользователь не найден'));
+      } else
+      {res.send(user)};
     })
-    .catch((err) => {
-      if (err) {
-        next(err);
-      }
-    });
 };
 
 module.exports.createUser = (req, res, next) => {
@@ -45,9 +40,9 @@ module.exports.createUser = (req, res, next) => {
     .catch((err) => {
       if (err) {
         if (err.name === 'MongoError' && err.code === 11000) {
-          next(new badRequestError('Такой пользователь уже существует'));
+          next(new BadRequestError('Такой пользователь уже существует'));
         }
-      next(err);
+        next(err);
       }
     });
 };
@@ -76,7 +71,7 @@ module.exports.updateAvatar = (req, res, next) => {
     });
 };
 
-module.exports.login = (req, res) => {
+module.exports.login = (req, res, next) => {
   const { email, password } = req.body;
 
   return User.findUserByCredentials(email, password)
@@ -85,8 +80,8 @@ module.exports.login = (req, res) => {
       res.cookie('token', token, { httpOnly: true });
       res.send({ token });
     })
-    .catch((err) => {
-      res.status(401).send({ message: err.message });
+    .catch(() => {
+      next(new Unauthorized('Неавторизован'));
     });
 };
 
