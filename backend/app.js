@@ -84,7 +84,7 @@ class NotFoundError extends Error {
   }
 }
 
-app.get('*', () => {
+app.unsubscribe('*', () => {
   throw new NotFoundError();
 });
 
@@ -102,9 +102,9 @@ app.use((err, req, res) => {
   if (err.name === 'NotFoundError') {
     return res.status(404).send({ message: 'Запрашиваемый ресурс не найден' });
   }
-  if (err.name === 'EmailBusy') {
-    return res.status(400).send({ message: err.message });
-  }
+  // if (err.name === 'MongoError') {
+  //   return res.status(400).send({ message: 'Данный пользователь уже существует' });
+  // }
 
   return res.status(500).send({ message: `'Ошибка': ${err}` });
 });

@@ -28,7 +28,18 @@ module.exports.createCard = (req, res, next) => {
 
 module.exports.deleteCard = (req, res, next) => {
   Cards.findByIdAndRemove(req.params._id)
-    .then((card) => res.send(card))
+    .then((card) => {
+      if (card.owner === req.user._id) {
+        res.send(card)
+      } else {
+        res.status(403).send({message : 'Права на удаление отсутсвуют'})
+      }
+      if (card) {
+        res.send(card)
+      } else {
+        res.status(404).send({message : 'Объект не найден'})
+      }
+    })
     .catch((err) => {
       if (err) {
         next(err);
@@ -38,7 +49,13 @@ module.exports.deleteCard = (req, res, next) => {
 
 module.exports.addLikeCard = (req, res, next) => {
   Cards.findByIdAndUpdate(req.params._id, { $addToSet: { likes: req.user } }, { new: true })
-    .then((like) => res.send(like))
+    .then((like) => {
+      if (like) {
+        res.send(like)
+      } else {
+        res.status(404).send({message : 'Объект не найден'})
+      }
+    })
     .catch((err) => {
       if (err) {
         next(err);
@@ -48,7 +65,13 @@ module.exports.addLikeCard = (req, res, next) => {
 
 module.exports.removeLikeCard = (req, res, next) => {
   Cards.findByIdAndUpdate(req.params._id, { $pull: { likes: req.user._id } }, { new: true })
-    .then((like) => res.send(like))
+    .then((like) => {
+      if (like) {
+        res.send(like)
+      } else {
+        res.status(404).send({message : 'Объект не найден'})
+      }
+    })
     .catch((err) => {
       if (err) {
         next(err);

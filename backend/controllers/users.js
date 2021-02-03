@@ -40,10 +40,9 @@ module.exports.createUser = (req, res, next) => {
     .catch((err) => {
       if (err) {
         if (err.name === 'MongoError' && err.code === 11000) {
-          const error = new Error('Данный пользователь уже существует');
-          error.name = 'EmailBusy';
-          next(error);
-        } else next(err);
+          res.status(400).send({ message: 'Данный пользователь уже существует' });
+          next(err);
+        }
       }
     });
 };
