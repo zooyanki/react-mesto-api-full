@@ -37,7 +37,7 @@ module.exports.deleteCard = (req, res, next) => {
           Cards.findByIdAndRemove(req.params._id)
           .then((delCard) => res.send(delCard))
         } else {
-          next(new accessError('Шел бы ты от сюда петушок'))
+          next(new accessError('У вас нет прав для удаления'))
         }
       } else {
         next(new notFoundError('Карточка не найдена'))
@@ -80,7 +80,7 @@ module.exports.removeLikeCard = (req, res, next) => {
         Cards.findByIdAndUpdate(req.params._id, { $pull: { likes: req.user._id } }, { new: true })
         .then((like) => res.send(like))
       } else {
-        next(new BadRequestError('Лайк в этой карточке нет'))
+        next(new BadRequestError('Лайка в этой карточке нет'))
       }
     } else {
       next(new notFoundError('Карточка не найдена'))
