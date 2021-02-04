@@ -95,6 +95,7 @@ app.use((err, req, res, next) => { // РУКИ ПРОЧЬ ОТ NEXT!!!!!!!!!!!!!
         ? 'На сервере произошла ошибка'
         : message,
     });
+  next();
 });
 
 app.listen(PORT);
